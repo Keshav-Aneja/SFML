@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\Users\asus\Desktop\sfml\practice-sfml\practice-sfml\main.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\asus\Desktop\sfml\practice-sfml\practice-sfml\main.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\asus\Desktop\sfml\practice-sfml\practice-sfml\main.cpp(25,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  practice-sfml.vcxproj -> C:\Users\asus\Desktop\sfml\practice-sfml\x64\Debug\practice-sfml.exe
