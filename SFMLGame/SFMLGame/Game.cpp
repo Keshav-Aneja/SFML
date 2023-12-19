@@ -77,6 +77,13 @@ void Game::spawnEnemy() {
 
 	//record when the most recent enemy was spawned
 	m_lastEnemySpawnTime = m_currentFrame;
+	auto enemy = m_entities.addEntity("enemy");
+	float ex = 10 + (rand() % (1+m_window.getSize().x-10));
+	float ey = 10 + (rand() % (1+m_window.getSize().y-10));
+	float emx = (rand() % (10)) - 5;
+	float emy = (rand() % (10)) - 5;
+	enemy->cTransform = std::make_shared<CTransform>(Vec2(ex, ey), Vec2(emx, emy), 0.0f);
+	enemy->cShape = std::make_shared<CShape>(20.0f, 4, sf::Color(255, 0, 255), sf::Color(0, 255, 0), 4.0f);
 }
 
 //spawns the small enemies, when a big one (input entity e) explodes
@@ -97,9 +104,13 @@ void Game::spawnBullet(std::shared_ptr<Entity> entity, const Vec2& target)
 	// - bullet speed is given as a scalar speed
 	// - we can se the velocity, using the concept of normalization
 	auto bullet = m_entities.addEntity("bullet");
-	bullet->cTransform = std::make_shared<CTransform>(target, Vec2(0, 0), 0);
+	Vec2 currentPlayerPos = { m_player->cTransform->pos.x, m_player->cTransform->pos.y };
+	float bulletSpeed = 5;
+	Vec2 diffVector = target - currentPlayerPos;
+	diffVector.normalize();
+	Vec2 bulletVelocity = diffVector * bulletSpeed;
+	bullet->cTransform = std::make_shared<CTransform>(currentPlayerPos, bulletVelocity, 0);
 	bullet->cShape = std::make_shared<CShape>(10,8,sf::Color(255,255,255),sf::Color(255,0,0),2);
-
 }
 
 void Game::spawnSpecialWeapon(std::shared_ptr<Entity> entity)
@@ -115,10 +126,26 @@ void Game::sMovement() {
 	{
 		m_player->cTransform->velocity.y = -5;
 	}
-
+	if (m_player->cInput->down)
+	{
+		m_player->cTransform->velocity.y = 5;
+	}
+	if (m_player->cInput->right)
+	{
+		m_player->cTransform->velocity.x = 5;
+	}
+	if (m_player->cInput->left)
+	{
+		m_player->cTransform->velocity.x = -5;
+	}
 	//sample movement speed update
-	m_player->cTransform->pos.x += m_player->cTransform->velocity.x;
-	m_player->cTransform->pos.y += m_player->cTransform->velocity.y;
+	//m_player->cTransform->pos.x += m_player->cTransform->velocity.x;
+	//m_player->cTransform->pos.y += m_player->cTransform->velocity.y;
+	for (auto& e : m_entities.getEntities())
+	{
+		e->cTransform->pos.x += e->cTransform->velocity.x;
+		e->cTransform->pos.y += e->cTransform->velocity.y;
+	}
 
 }
 
@@ -151,7 +178,7 @@ void Game::sEnemySpawner() {
 
 	// (use m_currentFrame - m_lastEnemySpawnTime) to determine
 	// how long it has been since the last enemy appeared
-	if (m_currentFrame - m_lastEnemySpawnTime > 180)
+	if (m_currentFrame - m_lastEnemySpawnTime > 60)
 	{
 		spawnEnemy();
 	}
@@ -207,6 +234,18 @@ void Game::sUserInput() {
 				//TODO: set player's input component "up" to be true
 				m_player->cInput->up = true;
 				break;
+			case sf::Keyboard::A:
+				std::cout << "A key is pressed\n";
+				m_player->cInput->left = true;
+				break;
+			case sf::Keyboard::S:
+				std::cout << "S key is pressed\n";
+				m_player->cInput->down = true;
+				break;
+			case sf::Keyboard::D:
+				std::cout << "D key is pressed\n";
+				m_player->cInput->right = true;
+				break;
 			default:
 				break;
 			}
@@ -219,6 +258,18 @@ void Game::sUserInput() {
 				std::cout << "W key is pressed\n";
 				//TODO: set player's input component "up" to be false
 				m_player->cInput->up = false;
+				break;
+			case sf::Keyboard::A:
+				std::cout << "A key is pressed\n";
+				m_player->cInput->left = false;
+				break;
+			case sf::Keyboard::S:
+				std::cout << "S key is pressed\n";
+				m_player->cInput->down = false;
+				break;
+			case sf::Keyboard::D:
+				std::cout << "D key is pressed\n";
+				m_player->cInput->right = false;
 				break;
 			default:
 				break;
