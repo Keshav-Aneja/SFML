@@ -26,4 +26,5 @@ public:
     Vec2 & add(const Vec2& rhs);
     Vec2 & subtract(const Vec2& rhs);
     Vec2& scale(float val);
+    Vec2& rotate(float val);
 };

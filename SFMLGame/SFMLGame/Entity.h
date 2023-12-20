@@ -7,6 +7,7 @@ class Entity {
     friend class EntityManager;
 
     bool m_active = true;
+    bool m_colliding = false;
     size_t m_id = 0;
     std::string m_tag = "Default";
 
@@ -23,6 +24,8 @@ public:
     std::shared_ptr<CLifespan> cLifespan;
 
     bool isActive() const;
+    bool isColliding() const;
+    void setColliding(bool val);
     const std::string& tag() const;
     const size_t id() const;
     void destroy();

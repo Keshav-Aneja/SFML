@@ -32,7 +32,7 @@ void Game::run() {
 	//Some system shouldn't (movement/input)
 
 	while (m_running) //This running variable is gonna be true until we exit
-	{
+	{ 
 		m_entities.update();
 
 		if (!m_pause)
@@ -40,8 +40,9 @@ void Game::run() {
 		sEnemySpawner();
 		sMovement();
 		sCollision();
-		sUserInput();
+		sLifeSpan();
 		}
+		sUserInput();
 		sRender();
 
 		
@@ -54,6 +55,7 @@ void Game::run() {
 void Game::setPaused(bool paused)
 {
 	//TODO
+	m_pause = paused;
 }
 //respawn the player in the middle of the screen
 void Game::spawnPlayer() {
@@ -73,7 +75,7 @@ void Game::spawnPlayer() {
 
 	//Add an input component to the player so we can use inputs
 	entity->cInput = std::make_shared<CInput>();
-
+	entity->cCollision = std::make_shared<CCollision>(40);
 	//Since, we want this entity to be our player, set our Game's variable to this Entity
 	//This goes slightly against the EntityManager paradigm, but we use the player so much it's worth it
 	m_player = entity;
@@ -92,8 +94,11 @@ void Game::spawnEnemy() {
 	float emx = (rand() % (10)) - 5;
 	float emy = (rand() % (10)) - 5;
 	int points = floor(3 + (rand() % 8));
+	int r = 128 + (rand() % 255);
+	int g = 128 + (rand() % 255);
+	int b = 128 + (rand() % 255);
 	enemy->cTransform = std::make_shared<CTransform>(Vec2(ex, ey), Vec2(emx, emy), 0.0f);
-	enemy->cShape = std::make_shared<CShape>(20.0f, points, sf::Color(255, 0, 255), sf::Color(0, 255, 0), 4.0f);
+	enemy->cShape = std::make_shared<CShape>(20.0f, points, sf::Color(r,g,b), sf::Color(g, b, r), 4.0f);
 	enemy->cCollision = std::make_shared<CCollision>(20.0f);
 	m_score++;
 }
@@ -107,6 +112,18 @@ void Game::spawnSmallEnemies(std::shared_ptr<Entity> e)
 	// - spawn a number of small enemies equal to the vertices of the original enemy
 	// - set each small enemy to the same color as it's original, but with half the size
 	// - small entities are worth double the points of the original enemy
+	size_t points = e->cShape->circle.getPointCount();
+	for (size_t i = 0; i < points; i++)
+	{
+		auto sm_enemy = m_entities.addEntity("small_enemy");
+		sm_enemy->cTransform = std::make_shared<CTransform>(e->cTransform->pos,
+			Vec2(1/sqrt(2),1/sqrt(2)).rotate((360 * (i) / e->cShape->circle.getPointCount())), 0.0f);
+		sm_enemy->cShape = std::make_shared<CShape>(e->cShape->circle.getRadius() / 2, e->cShape->circle.getPointCount(),
+			e->cShape->circle.getFillColor(), e->cShape->circle.getOutlineColor(), 2.0f);
+		//sm_enemy->cCollision = std::make_shared<CCollision>(e->cShape->circle.getRadius() / 2);
+		sm_enemy->cLifespan = std::make_shared<CLifespan>(30);
+		m_score += e->cShape->circle.getPointCount();
+	}
 }
 
 //spawns a bullet from the given entity to a target location
@@ -117,14 +134,14 @@ void Game::spawnBullet(std::shared_ptr<Entity> entity, const Vec2& target)
 	// - we can se the velocity, using the concept of normalization
 	auto bullet = m_entities.addEntity("bullet");
 	Vec2 currentPlayerPos = { m_player->cTransform->pos.x, m_player->cTransform->pos.y };
-	float bulletSpeed = 10;
+	float bulletSpeed = 5;
 	Vec2 bulletVelocity = target;
 	bulletVelocity.subtract(currentPlayerPos).normalize().scale(bulletSpeed);
 	bullet->cTransform = std::make_shared<CTransform>(currentPlayerPos, bulletVelocity, 0);
-	bullet->cShape = std::make_shared<CShape>(10,8,sf::Color(255,255,255),sf::Color(255,0,0),2);
+	bullet->cShape = std::make_shared<CShape>(10,8,sf::Color(255,255,255),sf::Color(255,0,0),0.0f);
 	bullet->cCollision = std::make_shared<CCollision>(15);
+	bullet->cLifespan = std::make_shared<CLifespan>(120);
 }
-
 void Game::spawnSpecialWeapon(std::shared_ptr<Entity> entity)
 {
 	//TODO: implement your own special weapon
@@ -134,19 +151,19 @@ void Game::sMovement() {
 	//TODO: implement all entity movement in this function
 	// you should read the m_player->cInput component to determine if the player is moving or not
 	m_player->cTransform->velocity = { 0,0 };
-	if (m_player->cInput->up)
+	if (m_player->cInput->up && m_player->cTransform->pos.y > 0)
 	{
 		m_player->cTransform->velocity.y = -5;
 	}
-	if (m_player->cInput->down)
+	if (m_player->cInput->down && m_player->cTransform->pos.y < m_window.getSize().y)
 	{
 		m_player->cTransform->velocity.y = 5;
 	}
-	if (m_player->cInput->right)
+	if (m_player->cInput->right && m_player->cTransform->pos.x < m_window.getSize().x)
 	{
 		m_player->cTransform->velocity.x = 5;
 	}
-	if (m_player->cInput->left)
+	if (m_player->cInput->left && m_player->cTransform->pos.x > 0)
 	{
 		m_player->cTransform->velocity.x = -5;
 	}
@@ -171,6 +188,21 @@ void Game::sLifeSpan() {
 	//		scale the aplha channel properly
 	// if it has lifespan and time is up
 	//		destroy the entity
+	for (auto& e : m_entities.getEntities())
+	{
+		if (e->cLifespan)
+		{
+			if (e->cLifespan->remaining > 0)
+			{
+				e->cLifespan->remaining--;
+				int transparency = floor(e->cLifespan->remaining * 255 / e->cLifespan->total);
+				e->cShape->circle.setFillColor(sf::Color(255, 255, 255, transparency));
+			}
+			else {
+				e->destroy();
+			}
+		}
+	}
 }
 void Game::sCollision() {
 	//TODO: implement all proper collision between entities
@@ -179,10 +211,24 @@ void Game::sCollision() {
 	{
 		for (auto e : m_entities.getEntities("enemy"))
 		{
-			if (Physics::isCollided(b, e))
+			if (!b->isColliding() && !e->isColliding() && Physics::isCollided(b, e))
 			{
 				std::cout << "Collision Detected\n";
+				b->setColliding(true);
+				e->setColliding(true);
+				b->destroy();
+				e->destroy();
+				spawnSmallEnemies(e);
 			}
+		}
+	}
+	for (auto e : m_entities.getEntities("enemy"))
+	{
+		if (Physics::isCollided(e, m_player))
+		{
+			//Respawn to the center of the game
+			m_player->cTransform->pos.x = m_window.getSize().x/2;
+			m_player->cTransform->pos.y = m_window.getSize().y/2;
 		}
 	}
 	for (auto e : m_entities.getEntities("enemy"))
@@ -205,7 +251,7 @@ void Game::sEnemySpawner() {
 
 	// (use m_currentFrame - m_lastEnemySpawnTime) to determine
 	// how long it has been since the last enemy appeared
-	if (m_currentFrame - m_lastEnemySpawnTime > 60)
+	if (m_currentFrame - m_lastEnemySpawnTime > 180)
 	{
 		spawnEnemy();
 	}
@@ -261,21 +307,21 @@ void Game::sUserInput() {
 			switch (event.key.code)
 			{
 			case sf::Keyboard::W:
-				std::cout << "W key is pressed\n";
+				//std::cout << "W key is pressed\n";
 				//TODO: set player's input component "up" to be true
 				m_player->cInput->up = true;
 				break;
 			case sf::Keyboard::A:
-				std::cout << "A key is pressed\n";
 				m_player->cInput->left = true;
 				break;
 			case sf::Keyboard::S:
-				std::cout << "S key is pressed\n";
 				m_player->cInput->down = true;
 				break;
 			case sf::Keyboard::D:
-				std::cout << "D key is pressed\n";
 				m_player->cInput->right = true;
+				break;
+			case sf::Keyboard::P:
+				setPaused(!m_pause);
 				break;
 			default:
 				break;
@@ -286,20 +332,17 @@ void Game::sUserInput() {
 			switch (event.key.code)
 			{
 			case sf::Keyboard::W:
-				std::cout << "W key is pressed\n";
+				//std::cout << "W key is pressed\n";
 				//TODO: set player's input component "up" to be false
 				m_player->cInput->up = false;
 				break;
 			case sf::Keyboard::A:
-				std::cout << "A key is pressed\n";
 				m_player->cInput->left = false;
 				break;
 			case sf::Keyboard::S:
-				std::cout << "S key is pressed\n";
 				m_player->cInput->down = false;
 				break;
 			case sf::Keyboard::D:
-				std::cout << "D key is pressed\n";
 				m_player->cInput->right = false;
 				break;
 			default:
@@ -310,13 +353,13 @@ void Game::sUserInput() {
 		{
 			if (event.mouseButton.button == sf::Mouse::Left)
 			{
-				std::cout << "Left mouse button is clicked (" << event.mouseButton.x << "," << event.mouseButton.y << ")\n";
+				//std::cout << "Left mouse button is clicked (" << event.mouseButton.x << "," << event.mouseButton.y << ")\n";
 				//call spawnBulletHere
 				spawnBullet(m_player, Vec2(event.mouseButton.x, event.mouseButton.y));
 			}
 			if (event.mouseButton.button == sf::Mouse::Right)
 			{
-				std::cout << "Right mouse button is clicked (" << event.mouseButton.x << "," << event.mouseButton.y << ")\n";
+				//std::cout << "Right mouse button is clicked (" << event.mouseButton.x << "," << event.mouseButton.y << ")\n";
 				//call spawnSpecialWeapon here
 			}
 		}

@@ -19,3 +19,11 @@ const size_t Entity::id() const {
 void Entity::destroy() {
 	m_active = false;
 }
+
+bool Entity::isColliding() const {
+	return m_colliding;
+}
+
+void Entity::setColliding(bool val) {
+	m_colliding = val;
+}

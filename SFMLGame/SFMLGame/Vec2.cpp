@@ -110,3 +110,11 @@ Vec2& Vec2::scale(float val)
     y *= val;
     return *this;
 }
+Vec2& Vec2::rotate(float val)
+{
+    normalize();
+    x = x * cos(val);
+    y = y * sin(val);
+    scale(10);
+    return *this;
+}
