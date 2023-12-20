@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Physics.h"
 #include <iostream>
 
 Game::Game(const std::string& config)
@@ -14,7 +15,15 @@ void Game::init(const std::string& config)
 	//setup default window parameters
 	m_window.create(sf::VideoMode(1280, 720), "Game2");
 	m_window.setFramerateLimit(60);
-
+	if (!m_font.loadFromFile("gilroy.ttf"))
+	{
+		std::cout << "Error Loading Font\n";
+		exit(-1);
+	}
+	m_text.setFont(m_font);
+	m_text.setCharacterSize(40);
+	m_text.setPosition(50, 50);
+	m_text.setFillColor(sf::Color::White);
 	spawnPlayer();
 }
 void Game::run() {
@@ -33,8 +42,8 @@ void Game::run() {
 		sCollision();
 		sUserInput();
 		}
-
 		sRender();
+
 		
 		//Increment the current frame
 		//may need to be moved from here when pause implemented
@@ -82,8 +91,11 @@ void Game::spawnEnemy() {
 	float ey = 10 + (rand() % (1+m_window.getSize().y-10));
 	float emx = (rand() % (10)) - 5;
 	float emy = (rand() % (10)) - 5;
+	int points = floor(3 + (rand() % 8));
 	enemy->cTransform = std::make_shared<CTransform>(Vec2(ex, ey), Vec2(emx, emy), 0.0f);
-	enemy->cShape = std::make_shared<CShape>(20.0f, 4, sf::Color(255, 0, 255), sf::Color(0, 255, 0), 4.0f);
+	enemy->cShape = std::make_shared<CShape>(20.0f, points, sf::Color(255, 0, 255), sf::Color(0, 255, 0), 4.0f);
+	enemy->cCollision = std::make_shared<CCollision>(20.0f);
+	m_score++;
 }
 
 //spawns the small enemies, when a big one (input entity e) explodes
@@ -105,12 +117,12 @@ void Game::spawnBullet(std::shared_ptr<Entity> entity, const Vec2& target)
 	// - we can se the velocity, using the concept of normalization
 	auto bullet = m_entities.addEntity("bullet");
 	Vec2 currentPlayerPos = { m_player->cTransform->pos.x, m_player->cTransform->pos.y };
-	float bulletSpeed = 5;
-	Vec2 diffVector = target - currentPlayerPos;
-	diffVector.normalize();
-	Vec2 bulletVelocity = diffVector * bulletSpeed;
+	float bulletSpeed = 10;
+	Vec2 bulletVelocity = target;
+	bulletVelocity.subtract(currentPlayerPos).normalize().scale(bulletSpeed);
 	bullet->cTransform = std::make_shared<CTransform>(currentPlayerPos, bulletVelocity, 0);
 	bullet->cShape = std::make_shared<CShape>(10,8,sf::Color(255,255,255),sf::Color(255,0,0),2);
+	bullet->cCollision = std::make_shared<CCollision>(15);
 }
 
 void Game::spawnSpecialWeapon(std::shared_ptr<Entity> entity)
@@ -160,15 +172,30 @@ void Game::sLifeSpan() {
 	// if it has lifespan and time is up
 	//		destroy the entity
 }
-
 void Game::sCollision() {
 	//TODO: implement all proper collision between entities
-	// be sure to use the collision, radius not the shape radius
+	// be sure to use the collision radius not the shape radius
 	for (auto b : m_entities.getEntities("bullet"))
 	{
 		for (auto e : m_entities.getEntities("enemy"))
 		{
-			//Collision logic here
+			if (Physics::isCollided(b, e))
+			{
+				std::cout << "Collision Detected\n";
+			}
+		}
+	}
+	for (auto e : m_entities.getEntities("enemy"))
+	{
+		float cx = e->cTransform->pos.x;
+		float cy = e->cTransform->pos.y;
+		if (cx - e->cCollision->radius < 0 || cx + e->cCollision->radius > m_window.getSize().x)
+		{
+			e->cTransform->velocity.x *= -1.0f;
+		}
+		if (cy - e->cCollision->radius < 0 || cy + e->cCollision->radius > m_window.getSize().y)
+		{
+			e->cTransform->velocity.y *= -1.0f;
 		}
 	}
 }
@@ -207,6 +234,10 @@ void Game::sRender() {
 		e->cShape->circle.setRotation(e->cTransform->angle);
 		m_window.draw(e->cShape->circle);
 	}
+	std::string score = std::to_string(m_score);
+	score = "Entites " + score;
+	m_text.setString(score);
+	m_window.draw(m_text);
 	m_window.display();
 }
 

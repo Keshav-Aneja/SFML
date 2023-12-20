@@ -80,7 +80,7 @@ float Vec2::length() const
     return (sqrt(x * x + y * y));
 }
 
-void Vec2::normalize()
+Vec2& Vec2::normalize()
 {
     float len = length();
     if (len != 0)
@@ -88,4 +88,25 @@ void Vec2::normalize()
         x /= len;
         y /= len;
     }
+    return *this;
+}
+
+Vec2& Vec2::add(const Vec2& rhs)
+{
+    x += rhs.x;
+    y += rhs.y;
+    return *this;
+}
+
+Vec2& Vec2::subtract(const Vec2& rhs)
+{
+    x -= rhs.x;
+    y -= rhs.y;
+    return *this;
+}
+Vec2& Vec2::scale(float val)
+{
+    x *= val;
+    y *= val;
+    return *this;
 }

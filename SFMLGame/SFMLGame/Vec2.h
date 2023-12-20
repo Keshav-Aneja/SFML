@@ -22,5 +22,8 @@ public:
 
     float dist(const Vec2& rhs) const;
     float length() const;
-    void normalize();
+    Vec2& normalize();
+    Vec2 & add(const Vec2& rhs);
+    Vec2 & subtract(const Vec2& rhs);
+    Vec2& scale(float val);
 };
