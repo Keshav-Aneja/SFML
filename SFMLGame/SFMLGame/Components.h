@@ -28,6 +28,17 @@ public:
         circle.setOrigin(radius, radius);
     }
 };
+class CRect {
+public:
+    sf::RectangleShape rect;
+    CRect(float width, float height, const sf::Color& fill, const sf::Color& outline, float thickness)
+    {
+        rect.setSize(sf::Vector2f(width,height));
+        rect.setFillColor(fill);
+        rect.setOutlineColor(outline);
+        rect.setOutlineThickness(thickness);
+    }
+};
 class CCollision {
 public:
     //radius of collision

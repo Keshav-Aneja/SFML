@@ -13,6 +13,9 @@ class Game {
 	EntityManager m_entities; // vector of entities to maintain
 	sf::Font m_font; //The font we will use to draw
 	sf::Text m_text;
+	sf::Text m_pauseText;
+	sf::Texture m_texture;
+	sf::Sprite m_sprite;
 	PlayerConfig m_playerConfig;
 	EnemyConfig m_enemyConfig;
 	BulletConfig m_bullerConfig;
@@ -33,6 +36,7 @@ class Game {
 	void sRender();
 	void sEnemySpawner();
 	void sCollision();
+	void sTimeline();
 
 	void spawnPlayer();
 	void spawnEnemy();
