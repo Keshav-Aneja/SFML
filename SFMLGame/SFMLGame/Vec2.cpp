@@ -110,11 +110,17 @@ Vec2& Vec2::scale(float val)
     y *= val;
     return *this;
 }
+float degToRad(float val)
+{
+    return val * 3.1415 / 180;
+}
 Vec2& Vec2::rotate(float val)
 {
     normalize();
-    x = x * cos(val) - y * sin(val);
-    y = x * sin(val) + y * cos(val);
-    scale(10);
+    val = degToRad(val);
+    float xval = x * cos(val) - y * sin(val);
+    float yval = x * sin(val) + y * cos(val);
+    x = xval;
+    y = yval;
     return *this;
 }
