@@ -37,7 +37,7 @@ void Game::init(const std::string& config)
 	m_rules.setCharacterSize(24);
 	m_rules.setPosition(m_window.getSize().x - 300, 50);
 	m_rules.setFillColor(sf::Color::Black);
-	m_rules.setString("WASD : Movement\nLClick : Bullets\nP : Pause\nRClick : Special Weapon");
+	m_rules.setString("WASD : Movement\nLClick : Bullets\nRClick : Special Weapon\nP : Pause");
 	spawnPlayer();
 	Timeline(40.0f);
 }
@@ -182,14 +182,14 @@ void Game::spawnSpecialWeapon()
 	Vec2 InitBulletVel = { 1,0 };
 	for (int i = 0; i < 12; i++)
 	{
-		auto bullet = m_entities.addEntity("bullet");
+		auto sbullet = m_entities.addEntity("bullet");
 		Vec2 currentPlayerPos = { m_player->cTransform->pos.x, m_player->cTransform->pos.y };
 		float bulletSpeed = 15;
 		Vec2 bulletVelocity = InitBulletVel.rotate(i * 30).scale(bulletSpeed);
-		bullet->cTransform = std::make_shared<CTransform>(currentPlayerPos, bulletVelocity, 0);
-		bullet->cShape = std::make_shared<CShape>(10, 8, sf::Color::Magenta, sf::Color(255, 255, 255), 4.0f);
-		bullet->cCollision = std::make_shared<CCollision>(15);
-		bullet->cLifespan = std::make_shared<CLifespan>(30);
+		sbullet->cTransform = std::make_shared<CTransform>(currentPlayerPos, bulletVelocity, 0);
+		sbullet->cShape = std::make_shared<CShape>(10, 32, sf::Color::Magenta, sf::Color(255, 255, 255), 4.0f);
+		sbullet->cCollision = std::make_shared<CCollision>(15);
+		sbullet->cLifespan = std::make_shared<CLifespan>(30);
 	}
 }
 void Game::sMovement() {
@@ -311,7 +311,6 @@ void Game::sCollision() {
 		if (e->isActive() && !e->isColliding() && !m_player->isColliding() && Physics::isCollided(e, m_player))
 		{
 			//Respawn to the center of the game
-			std::cout << "Collision Detected\n with" << e->isActive();
 			e->setColliding(true);
 			m_player->setColliding(true);
 			m_player->cTransform->pos.x = m_window.getSize().x/2;
@@ -329,7 +328,6 @@ void Game::sCollision() {
 		if (e->isActive() && !e->isColliding() && !m_player->isColliding() && Physics::isCollided(e, m_player))
 		{
 			//Respawn to the center of the game
-			std::cout << "Collision Detected\n";
 			e->setColliding(true);
 			m_player->setColliding(true);
 			m_player->cTransform->pos.x = m_window.getSize().x / 2;
@@ -489,7 +487,11 @@ void Game::sUserInput() {
 			{
 				//std::cout << "Right mouse button is clicked (" << event.mouseButton.x << "," << event.mouseButton.y << ")\n";
 				//call spawnSpecialWeapon here
+				if (m_specialWeaponCount > 0)
+				{
 				spawnSpecialWeapon();
+				m_specialWeaponCount--;
+				}
 			}
 		}
 	}

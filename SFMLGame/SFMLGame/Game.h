@@ -33,6 +33,7 @@ class Game {
 	float m_timeRemaining = 0;
 	float m_totalTime = 0;
 	float m_timeBarWidthPerSecond;
+	size_t m_specialWeaponCount = 5;
 	std::chrono::time_point<std::chrono::system_clock> m_startTime = std::chrono::system_clock::now();
 	std::shared_ptr<Entity> m_player;
 

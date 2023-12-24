@@ -1,0 +1,24 @@
+﻿  Entity.cpp
+  EntityManager.cpp
+  Game.cpp
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Components.h(3,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'Entity.cpp')
+  
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Components.h(3,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'EntityManager.cpp')
+  
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Components.h(3,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'Game.cpp')
+  
+  main.cpp
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\main.cpp(1,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Physics.cpp
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Components.h(3,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'Physics.cpp')
+  
+  Vec2.cpp
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Vec2.cpp(75,17): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Vec2.cpp(80,17): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Vec2.cpp(115,25): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Vec2.cpp(121,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Vec2.cpp(122,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
