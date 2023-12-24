@@ -20,7 +20,12 @@ class Game {
 	sf::Sprite m_sprite;
 	sf::RectangleShape m_timeline;
 	sf::SoundBuffer m_shootSound;
-	sf::SoundBuffer m_killSound;
+	sf::Sound m_shootEffect;
+	sf::SoundBuffer m_specialWeapondSoundBuffer;
+	sf::Sound m_specialWeaponEffect;
+	sf::Music m_bgmusic;
+	sf::SoundBuffer m_killSoundBuffer;
+	sf::Sound m_killSound;
 	PlayerConfig m_playerConfig;
 	EnemyConfig m_enemyConfig;
 	BulletConfig m_bullerConfig;

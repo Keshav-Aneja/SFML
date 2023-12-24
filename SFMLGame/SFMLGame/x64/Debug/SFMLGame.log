@@ -1,71 +1,71 @@
 ﻿  Game.cpp
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(38,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(38,43): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(38,43): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(38,43): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(38,43): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,75): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,75): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,75): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,75): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,75): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,49): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,49): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,49): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,49): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(115,49): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(126,11): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(126,11): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(126,11): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(126,11): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(126,11): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(127,11): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(127,11): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(127,11): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(127,11): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(127,11): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(128,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(129,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(130,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(153,46): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(188,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,72): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,72): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,72): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,72): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,72): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,46): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,46): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,46): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,46): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(231,46): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(266,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(290,47): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(305,50): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(316,54): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(316,54): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(316,54): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(316,54): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(316,54): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(317,54): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(317,54): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(317,54): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(317,54): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(317,54): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(318,46): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(333,55): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(333,55): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(333,55): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(333,55): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(333,55): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(334,55): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(334,55): warning C4244:         with
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(334,55): warning C4244:         [
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(334,55): warning C4244:             T=unsigned int
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(334,55): warning C4244:         ]
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(335,49): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(484,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(484,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(50,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(50,43): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(50,43): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(50,43): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(50,43): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,75): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,75): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,75): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,75): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,75): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,49): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,49): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,49): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,49): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(134,49): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(145,11): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(145,11): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(145,11): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(145,11): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(145,11): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(146,11): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(146,11): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(146,11): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(146,11): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(146,11): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(147,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(148,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(149,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(172,46): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(207,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,72): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,72): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,72): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,72): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,72): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,46): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,46): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,46): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,46): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(250,46): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(285,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(309,47): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(325,50): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(336,54): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(336,54): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(336,54): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(336,54): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(336,54): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(337,54): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(337,54): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(337,54): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(337,54): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(337,54): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(338,46): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(353,55): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(353,55): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(353,55): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(353,55): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(353,55): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(354,55): warning C4244: '=': conversion from 'T' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(354,55): warning C4244:         with
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(354,55): warning C4244:         [
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(354,55): warning C4244:             T=unsigned int
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(354,55): warning C4244:         ]
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(355,49): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(504,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(504,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82): warning C4244:         with
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82): warning C4244:         [
@@ -74,7 +74,7 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.3313
   (compiling source file 'Game.cpp')
   C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
   the template instantiation context (the oldest one first) is
-  	C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(100,28):
+  	C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(119,28):
   	see reference to function template instantiation 'std::shared_ptr<CCollision> std::make_shared<CCollision,int>(int &&)' being compiled
   	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
   	see reference to function template instantiation 'std::_Ref_count_obj2<CCollision>::_Ref_count_obj2<_Ty>(_Ty &&)' being compiled
@@ -93,7 +93,7 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.3313
   (compiling source file 'Game.cpp')
   C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
   the template instantiation context (the oldest one first) is
-  	C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(154,27):
+  	C:\Users\asus\Desktop\sfml\SFMLGame\SFMLGame\Game.cpp(173,27):
   	see reference to function template instantiation 'std::shared_ptr<CShape> std::make_shared<CShape,float,size_t,const sf::Color&,const sf::Color&,float>(float &&,size_t &&,const sf::Color &,const sf::Color &,float &&)' being compiled
   	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
   	see reference to function template instantiation 'std::_Ref_count_obj2<CShape>::_Ref_count_obj2<_Ty,unsigned __int64,const sf::Color&,const sf::Color&,_Ty>(_Ty &&,unsigned __int64 &&,const sf::Color &,const sf::Color &,_Ty &&)' being compiled

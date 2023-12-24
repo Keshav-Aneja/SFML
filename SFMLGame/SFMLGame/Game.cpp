@@ -24,11 +24,23 @@ void Game::init(const std::string& config)
 		std::cout << "Error Loading Font\n";
 		exit(-1);
 	}
-	if (!m_shootSound.loadFromFile("plasmablaster.ogg"))
+	if (!m_shootSound.loadFromFile("shooting.ogg"))
 	{
 		std::cout << "Error loading Sound\n";
 		exit( - 1);
 	}
+	if (!m_specialWeapondSoundBuffer.loadFromFile("plasmablaster.ogg"))
+	{
+		std::cout << "Error loading Sound\n";
+		exit(-1);
+	}
+	if (!m_killSoundBuffer.loadFromFile("destroy.ogg"))
+	{
+		exit(-1);
+	}
+	m_killSound.setBuffer(m_killSoundBuffer);
+	m_shootEffect.setBuffer(m_shootSound);
+	m_specialWeaponEffect.setBuffer(m_specialWeapondSoundBuffer);
 	m_text.setFont(m_font);
 	m_text.setCharacterSize(40);
 	m_text.setPosition(50, 50);
@@ -40,12 +52,19 @@ void Game::init(const std::string& config)
 	m_rules.setString("WASD : Movement\nLClick : Bullets\nRClick : Special Weapon\nP : Pause");
 	spawnPlayer();
 	Timeline(40.0f);
+	if (!m_bgmusic.openFromFile("bg-music.ogg"))
+	{
+		std::cout << "Error loading music" << std::endl;
+		exit(-1);
+	}
+	m_bgmusic.setVolume(30.0f);
+	m_bgmusic.play();
+
 }
 void Game::run() {
 	//TODO: Add pause functionality in here
 	//Some system should work while pause (rendering)
 	//Some system shouldn't (movement/input)
-
 	while (m_running) //This running variable is gonna be true until we exit
 	{ 
 		m_entities.update();
@@ -172,9 +191,9 @@ void Game::spawnBullet(std::shared_ptr<Entity> entity, const Vec2& target)
 	bullet->cShape = std::make_shared<CShape>(10,8,sf::Color(255,255,255),sf::Color(0,0,0),4.0f);
 	bullet->cCollision = std::make_shared<CCollision>(15);
 	bullet->cLifespan = std::make_shared<CLifespan>(180);
-	sf::Sound bulletSound;
-	bulletSound.setBuffer(m_shootSound);
-	bulletSound.play();
+	m_shootEffect.play();
+
+
 }
 void Game::spawnSpecialWeapon()
 {
@@ -187,9 +206,9 @@ void Game::spawnSpecialWeapon()
 		float bulletSpeed = 15;
 		Vec2 bulletVelocity = InitBulletVel.rotate(i * 30).scale(bulletSpeed);
 		sbullet->cTransform = std::make_shared<CTransform>(currentPlayerPos, bulletVelocity, 0);
-		sbullet->cShape = std::make_shared<CShape>(10, 32, sf::Color::Magenta, sf::Color(255, 255, 255), 4.0f);
+		sbullet->cShape = std::make_shared<CShape>(10, 32, sf::Color(255,20,20,255), sf::Color(0,0,0), 4.0f);
 		sbullet->cCollision = std::make_shared<CCollision>(15);
-		sbullet->cLifespan = std::make_shared<CLifespan>(30);
+		//sbullet->cLifespan = std::make_shared<CLifespan>(30);
 	}
 }
 void Game::sMovement() {
@@ -289,6 +308,7 @@ void Game::sCollision() {
 				spawnSmallEnemies(e);
 				m_score += e->cShape->circle.getPointCount();
 				std::cout << e->cShape->circle.getPointCount() << std::endl;
+				m_killSound.play();
 			}
 		}
 	}
@@ -360,7 +380,7 @@ void Game::sEnemySpawner() {
 
 	// (use m_currentFrame - m_lastEnemySpawnTime) to determine
 	// how long it has been since the last enemy appeared
-	if (m_timeRemaining > m_totalTime/2 && m_currentFrame - m_lastEnemySpawnTime > 180)
+	if (m_timeRemaining > m_totalTime/2 && m_currentFrame - m_lastEnemySpawnTime > 120)
 	{
 		spawnEnemy();
 	}
@@ -491,6 +511,7 @@ void Game::sUserInput() {
 				{
 				spawnSpecialWeapon();
 				m_specialWeaponCount--;
+				m_specialWeaponEffect.play();
 				}
 			}
 		}
